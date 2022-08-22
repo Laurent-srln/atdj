@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=atdj
+
+init 2022-08-19T09:02:10Z Laurent Séraline <l.seraline@gmail.com> # initialization atdj db
