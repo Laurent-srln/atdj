@@ -2,6 +2,7 @@ const userMapper = require('../mappers/userMapper');
 const emailValidator = require('email-validator');
 const { v4: uuidv4 } = require('uuid');
 const passwordServices = require('../services/passwordServices');
+const capitalizeFirstLetter = require('../services/capitalizeFirstLetter');
 
 const userController = {
 
@@ -16,7 +17,7 @@ const userController = {
                 return;
             }
 
-            userData.firstname = userData.firstname[0].toUpperCase() + userData.firstname.slice(1).toLowerCase();
+            userData.firstname = capitalizeFirstLetter(userData.firstname.toLowerCase());
             userData.lastname = userData.lastname.toUpperCase();
             userData.email = userData.email.toLowerCase();
             userData.category = userData.category.toUpperCase();
@@ -84,6 +85,7 @@ const userController = {
         let userData = req.body;
         userData.id = id;
 
+
         try {
             
             //On s'assure que toutes les informations requises sont présentes
@@ -91,8 +93,8 @@ const userController = {
                 res.status(400).json({"message": `Tous les champs obligatoires doivent être remplis.`});
                 return;
             }
-
-            userData.firstname = userData.firstname[0].toUpperCase() + userData.firstname.slice(1).toLowerCase();
+            
+            userData.firstname = capitalizeFirstLetter(userData.firstname);
             userData.lastname = userData.lastname.toUpperCase();
             userData.email = userData.email.toLowerCase();
             userData.category = userData.category.toUpperCase();
