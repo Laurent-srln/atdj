@@ -30,7 +30,9 @@ CREATE TABLE "boardgame" (
 
 CREATE TABLE "event" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "date" date NOT NULL,
+    "name" text NOT NULL,
+    "start_date_time" timestamptz NOT NULL,
+    "end_date_time" timestamptz NOT NULL,
     "description" text NOT NULL,
     "created_by" int NOT NULL REFERENCES "user"(id),
     "created_at" timestamptz NOT NULL DEFAULT now(),

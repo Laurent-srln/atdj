@@ -2,3 +2,5 @@
 node_modules
 app/services/jwtSecret.js
 pas_a_pas.md
+seeding.sql
+

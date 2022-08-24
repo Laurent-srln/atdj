@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const boardgameController = require('../controllers/boardgameController');
+const eventController = require('../controllers/eventController');
 
 //Auth routes
 router.post('/register', authController.setPassword);
@@ -22,6 +23,9 @@ router.get('/boardgames', boardgameController.getAllBoardgames);
 router.get('/boardgames/:id', boardgameController.getABoardgameById);
 router.put('/boardgames/:id', boardgameController.editBoardgame);
 router.delete('/boardgames/:id', boardgameController.deleteBoardgame);
+
+//Events routes
+router.post('/new-event', eventController.addEvent);
 
 
 

@@ -1,10 +1,20 @@
 class Event {
     id;
-    date;
+    name;
+    startDateTime;
+    endDateTime;
     description;
     createdBy;
     createdAt;
     updatedAt;
+
+    set start_date_time(val){
+        this.startDateTime = val;
+    }
+
+    set end_date_time(val){
+        this.endDateTime = val;
+    }
 
     set created_by(val){
         this.createdBy = val;
