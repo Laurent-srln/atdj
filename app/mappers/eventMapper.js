@@ -13,17 +13,62 @@ const eventMapper = {
 
         return new Event(result.rows[0]);
 
-    }
+    },
 
-    // getAllEvents
+    getAllEvents : async () => {
 
-    // getEventById
+        const result = await db.query(`
+        SELECT e.id, e.name, e.start_date_time, e.end_date_time, e.description
+        FROM event e;`);
+
+        return result.rows.map(event => new Event(event));
+    },
+
+    getEventById : async (eventId) => {
+
+        const result = await db.query(`
+        SELECT e.id, e.name, e.start_date_time, e.end_date_time, e.description
+        FROM event e
+        WHERE e.id = $1;`, [eventId])
+
+        if (!result.rows[0]) {
+            throw new Error(`Cet id ne correspond à aucun évènement.`);
+        }
+
+        return new Event(result.rows[0]);
+    },
 
     // getAllUsersByEventId
 
-    // editEvent
+    editEvent : async ({ id, name, startDateTime, endDateTime, description, updatedBy }) => {
 
-    // deleteEvent
+        const result = await db.query(`
+        UPDATE "event"
+        SET name = $2, start_date_time = $3, end_date_time = $4, description = $5, updated_by = $6
+        WHERE id = $1
+        RETURNING *;`, [id, name, startDateTime, endDateTime, description, updatedBy])
+
+        if (!result.rows[0]) {
+            throw new Error(`Cet id ne correspond à aucun évènement.`);
+        }
+
+        return new Event(result.rows[0]);
+    },
+
+    deleteEvent : async (id) => {
+        const result = await db.query(`
+        DELETE FROM "event"
+        WHERE id = $1
+        RETURNING *;`, [id])
+
+        
+        if (!result.rows[0]) {
+            throw new Error(`Cet id ne correspond à aucun évènement.`);
+        }
+
+        return new Event(result.rows[0]);
+        
+    }
 
     
 };

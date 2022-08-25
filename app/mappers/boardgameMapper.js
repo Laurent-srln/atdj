@@ -61,11 +61,18 @@ const boardgameMapper = {
     },
 
     deleteBoardgame : async (id) => {
-        const result = db.query(`
+        const result = await db.query(`
         DELETE FROM "boardgame"
         WHERE id = $1
         RETURNING *;`, [id]
-)
+        )
+
+        if (!result.rows[0]) {
+            throw new Error(`Cet id ne correspond à aucun jeu.`);
+        }
+
+        return new Boardgame(result.rows[0]);
+
 
         return;
     }

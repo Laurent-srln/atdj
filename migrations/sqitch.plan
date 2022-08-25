@@ -2,3 +2,4 @@
 %project=atdj
 
 init 2022-08-19T09:02:10Z Laurent Séraline <l.seraline@gmail.com> # initialization atdj db
+event_updated_by 2022-08-25T08:27:40Z Laurent Séraline <l.seraline@gmail.com> # add column updated_by in event table

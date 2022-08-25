@@ -117,8 +117,7 @@ const boardgameController = {
             let id = Number(req.params.id);
 
             try {
-                const deletedBoardgame = await boardgameMapper.getBoardgameById(id)
-                await boardgameMapper.deleteBoardgame(id);
+                const deletedBoardgame = await boardgameMapper.deleteBoardgame(id);
 
                 res.status(400).json({"message": "Le jeu a bien été supprimé.", "deletedBoardgame": deletedBoardgame})
             } catch(err) {

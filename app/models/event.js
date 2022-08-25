@@ -6,6 +6,7 @@ class Event {
     description;
     createdBy;
     createdAt;
+    updatedBy;
     updatedAt;
 
     set start_date_time(val){
@@ -22,6 +23,10 @@ class Event {
 
     set created_at(val){
         this.createdAt = val;
+    }
+
+    set updated_by(val){
+        this.updatedBy = val;
     }
 
     set updated_at(val){

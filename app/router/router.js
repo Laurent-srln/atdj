@@ -26,6 +26,10 @@ router.delete('/boardgames/:id', boardgameController.deleteBoardgame);
 
 //Events routes
 router.post('/new-event', eventController.addEvent);
+router.get('/events', eventController.getAllEvents);
+router.get('/events/:id', eventController.getEventById);
+router.put('/events/:id', eventController.editEvent);
+router.delete('/events/:id', eventController.deleteEvent);
 
 
 
