@@ -54,6 +54,22 @@ const userMapper = {
 
     },
 
+    getUsersByEventId: async (eventId) => {
+        const result = await db.query(`
+        SELECT u.id, u.email, u.firstname, u.lastname, u.category
+        FROM "attendance" a
+        LEFT JOIN "user" u ON a.user_id = u.id
+        WHERE a.event_id = $1`, [eventId])
+
+        if(!result.rows[0]) {
+
+            return;
+        }
+        
+        return result.rows.map(user => new User(user))
+
+    },
+
     //setNewToken
 
     editUser: async (user) => {
@@ -74,11 +90,15 @@ const userMapper = {
 
     deleteUser : async (id) => {
 
-        await db.query(`
+       result = await db.query(`
             DELETE FROM "user"
             WHERE id = $1 RETURNING *`, [id]);
+
+        if (!result.rows[0]) {
+            throw new Error(`Cet id ne correspond à aucun utilisateur.`);
+        }
         
-        return;
+        return new User(result.rows[0]);
 
     }
 };

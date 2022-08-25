@@ -38,6 +38,16 @@ const eventMapper = {
         return new Event(result.rows[0]);
     },
 
+    getEventsByUserId : async (userId) => {
+        const result = await db.query(`
+        SELECT e.id, e.name, e.start_date_time, e.end_date_time, e.description
+        FROM attendance a
+        LEFT JOIN event e on a.event_id = e.id
+        WHERE a.user_id = $1;`, [userId]);
+
+        return result.rows.map(event => new Event(event));
+    },
+
     // getAllUsersByEventId
 
     editEvent : async ({ id, name, startDateTime, endDateTime, description, updatedBy }) => {

@@ -137,16 +137,10 @@ const userController = {
         const id = Number(req.params.id);
 
         try {
-            const isUser = await userMapper.getUserById(id);
-        
-            if(!isUser) {
-                res.status(400).json({"message": "Il n'y a pas d'utilisateur avec cet id."});
-            }
-            else {
+
                 const deletedUser = await userMapper.deleteUser(id);
     
-                res.status(400).json({"message": "L'utilisateur a bien été supprimé.", "deletedUser": isUser})
-            } 
+                res.status(400).json({"message": "L'utilisateur a bien été supprimé.", "deletedUser": deletedUser})
 
         } catch(err) {
             res.status(400).json({"message": err.message});

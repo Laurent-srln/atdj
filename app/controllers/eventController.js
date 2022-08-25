@@ -88,7 +88,7 @@ const eventController = {
             const id = Number(req.params.id);
             const deletedEvent = await eventMapper.deleteEvent(id);
 
-            res.status(400).json({"message": "L'évènement a bien été supprimé.", "deletedEvent": deletedEvent})
+            res.status(200).json({"message": "L'évènement a bien été supprimé.", "deletedEvent": deletedEvent})
         } catch(err) {
             res.status(400).json({"message": err.message});
             }

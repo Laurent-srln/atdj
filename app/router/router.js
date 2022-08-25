@@ -4,6 +4,8 @@ const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const boardgameController = require('../controllers/boardgameController');
 const eventController = require('../controllers/eventController');
+const attendanceController = require('../controllers/attendanceController');
+const attendanceMapper = require('../mappers/attendanceMapper');
 
 //Auth routes
 router.post('/register', authController.setPassword);
@@ -31,6 +33,12 @@ router.get('/events/:id', eventController.getEventById);
 router.put('/events/:id', eventController.editEvent);
 router.delete('/events/:id', eventController.deleteEvent);
 
+//Attendances routes
+router.post(`/new-attendance/:eventId`, attendanceController.addSelfAttendance);
+router.post(`/new-attendance/:eventId/:userId`, attendanceController.addOtherAttendance);
+router.get(`/attendances/:userId`, attendanceController.getAttendancesByUserId);
+router.get(`/attendances/events/:eventId`, attendanceController.getAttendancesByEventId);
+router.delete(`/attendances/:eventId/:userId`, attendanceController.deleteAttendance);
 
 
 module.exports = router;
