@@ -23,7 +23,7 @@ const membershipController = {
 
             const newMembership = await membershipMapper.addMembership(userId, startDate, endDate, createdBy);
 
-            res.status(200).json({"message": "L'adhésion a bien été ajoutée.", "membership": newMembership})
+            res.status(200).json({"message": "L'adhésion a bien été ajoutée.", "newMembership": newMembership})
         } catch(err) {
             res.status(400).json({"message": err.message});
         }

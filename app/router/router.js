@@ -7,6 +7,7 @@ const eventController = require('../controllers/eventController');
 const attendanceController = require('../controllers/attendanceController');
 const attendanceMapper = require('../mappers/attendanceMapper');
 const membershipController = require('../controllers/membershipController');
+const gameController = require('../controllers/gameController');
 
 //Auth routes
 router.post('/register', authController.setPassword);
@@ -49,5 +50,7 @@ router.get(`/memberships/:userId`, membershipController.getAllMembershipsByUserI
 router.get(`/validMembership/:userId`, membershipController.getValidMembershipByUserId);
 router.delete(`/memberships/:membershipId`, membershipController.deleteMembership);
 
+//Games routes
+router.post(`/new-game`, gameController.addGame);
 
 module.exports = router;
