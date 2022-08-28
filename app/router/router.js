@@ -6,6 +6,7 @@ const boardgameController = require('../controllers/boardgameController');
 const eventController = require('../controllers/eventController');
 const attendanceController = require('../controllers/attendanceController');
 const attendanceMapper = require('../mappers/attendanceMapper');
+const membershipController = require('../controllers/membershipController');
 
 //Auth routes
 router.post('/register', authController.setPassword);
@@ -39,6 +40,14 @@ router.post(`/new-attendance/:eventId/:userId`, attendanceController.addOtherAtt
 router.get(`/attendances/:userId`, attendanceController.getAttendancesByUserId);
 router.get(`/attendances/events/:eventId`, attendanceController.getAttendancesByEventId);
 router.delete(`/attendances/:eventId/:userId`, attendanceController.deleteAttendance);
+
+//Memberships routes
+router.post(`/new-membership`, membershipController.addMembership);
+router.get(`/memberships`, membershipController.getAllMemberships);
+router.get(`/validMemberships`, membershipController.getAllValidMemberships);
+router.get(`/memberships/:userId`, membershipController.getAllMembershipsByUserId);
+router.get(`/validMembership/:userId`, membershipController.getValidMembershipByUserId);
+router.delete(`/memberships/:membershipId`, membershipController.deleteMembership);
 
 
 module.exports = router;

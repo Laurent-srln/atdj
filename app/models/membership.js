@@ -2,6 +2,7 @@ class Membership {
     id;
     userId;
     startDate;
+    endDate;
     createdBy;
     createdAt;
     updatedAt;
@@ -12,6 +13,10 @@ class Membership {
 
     set start_date(val){
         this.startDate = val;
+    }
+
+    set end_date(val){
+        this.endDate = val;
     }
 
     set created_by(val){

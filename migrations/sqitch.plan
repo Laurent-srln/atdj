@@ -3,3 +3,4 @@
 
 init 2022-08-19T09:02:10Z Laurent Séraline <l.seraline@gmail.com> # initialization atdj db
 event_updated_by 2022-08-25T08:27:40Z Laurent Séraline <l.seraline@gmail.com> # add column updated_by in event table
+membership_end_date 2022-08-28T14:38:45Z Laurent Séraline <l.seraline@gmail.com> # add end_date column to membership table
